@@ -1,5 +1,4 @@
-set nobackup
-set nowritebackup
+set backupdir=/var/tmp
 set noswapfile
 set tabstop=4
 set shiftwidth=4
@@ -13,9 +12,8 @@ set list
 set expandtab
 set tabstop=4 shiftwidth=4 expandtab
 set hlsearch
-filetype indent on
 filetype on
-filetype plugin on
+filetype plugin indent on
 au FileType python set omnifunc=pythoncomplete#Complete
 let g:SuperTabDefaultCompletionType = "context"
 set completeopt=menuone,longest,preview
@@ -43,3 +41,21 @@ syntax on
 set clipboard=unnamedplus
 set go+=a
 set paste
+set nofoldenable
+
+execute pathogen#infect()
+call pathogen#infect()
+call pathogen#helptags()
+
+set t_Co=256
+colorscheme solarized
+set background=light
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
