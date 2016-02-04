@@ -47,9 +47,9 @@ execute pathogen#infect()
 call pathogen#infect()
 call pathogen#helptags()
 
-set t_Co=256
+set t_Co=16
 colorscheme solarized
-set background=light
+set background=dark
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -59,3 +59,26 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+au BufRead,BufNewFile *.cf set ft=cf3
+:helptags ~/.vim/doc/
+
+fun! Getchar()
+  let c = getchar()
+  if c != 0
+    let c = nr2char(c)
+  endif
+  return c
+endfun
+
+fun! Eatchar(pat)
+   let c = Getchar()
+   return (c =~ a:pat) ? '' : c
+endfun
+
+augroup vagrant
+  au!
+  au BufRead,BufNewFile Vagrantfile set filetype=ruby
+augroup END
+
+set ruler
